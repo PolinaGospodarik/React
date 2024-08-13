@@ -1,0 +1,31 @@
+.tabs__item{
+    background-color: #fff;
+    padding: 0 40px 24px;
+    border-bottom: 2px solid transparent;
+    margin-right: 40px;
+    color: rgba(49, 48, 55, 1);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+}
+
+.tabs__item:last-child{
+    margin-right: 0;
+}
+.tabs__item:hover{
+    color: rgba(34, 49, 170, 1);
+}
+
+.tabs__item:disabled{
+    color: rgba(141, 142, 151, 1);
+    cursor: not-allowed;
+}
+
+.tabs__item:active {
+    border-bottom:  2px solid rgba(49, 48, 55, 1);
+}
+.tabs__item:disabled:active {
+    border-bottom:  2px solid transparent;
+    cursor: not-allowed;
+}
+

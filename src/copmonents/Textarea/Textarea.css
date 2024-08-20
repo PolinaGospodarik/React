@@ -1,0 +1,25 @@
+.wrap-textarea{
+    background-color: rgba(243, 243, 243, 1);
+}
+
+.label-textarea{
+    display: block;
+    font-size:16px;
+    font-weight:600;
+    line-height: 20px;
+}
+
+.textarea{
+    resize:none;
+    width: 1120px;
+    height: 245px;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 26px 20px;
+    border-radius: 2px;
+    font-family: "Inter", serif;
+    font-size:16px;
+    font-weight: 400;
+}
+.textarea:focus{
+    outline: none;
+}

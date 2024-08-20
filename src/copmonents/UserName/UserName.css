@@ -5,6 +5,7 @@
     background-color: rgba(34, 49, 170, 1);
     padding: 18px 30px;
     max-width: 230px;
+    margin: 10px 0;
 }
 
 .container-username__initial{
@@ -17,13 +18,13 @@
     line-height: 34px;
     text-align: center;
     color: rgba(255, 255, 255, 1);
+    margin-right: 16px;
 }
 
 .container-username__fullname{
-    width: 104px;
     font-size: 15px;
     font-weight: 600;
     text-align: center;
     color: rgba(255, 255, 255, 1);
-
+    flex: 1;
 }

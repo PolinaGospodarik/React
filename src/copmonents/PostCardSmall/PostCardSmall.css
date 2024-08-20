@@ -1,0 +1,63 @@
+.small-card{
+    background-color: rgb(255, 255, 255);
+    width:352px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.small-card__content{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+
+.small-card__date{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.small-card__title{
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(49, 48, 55, 1);
+}
+
+.small-card__title:hover{
+    color: rgba(34, 49, 170, 1);
+}
+
+.small-card__wrap-image{
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
+}
+.small-card__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.small-card__icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(218, 218, 218, 1);
+}
+
+.small-card__icon-like, .small-card__icon-bookmark{
+    margin-right: 24px;
+}
+.small-card__icon-dislike{
+    transform: scale(-1, 1);
+}
+.small-card__icon-like, .small-card__icon-dislike, .small-card__icon-bookmark, .small-card__icon-menu {
+    font-size:22px;
+    color:rgba(76, 75, 94, 1);
+}
+button{
+    background-color:transparent;
+    cursor: pointer;
+}

@@ -9,7 +9,7 @@ import "./AllPosts.css"
 const AllPosts = () => {
     return (
         <>
-        <div className="all-posts all-posts-light">
+        <div className="all-posts background-light">
             <Header></Header>
             <div className="all-posts-container">
                 <div className="all-posts-wrap__title"><Title>Blog</Title></div>

@@ -16,6 +16,13 @@ button{
     cursor: pointer;
 }
 
+.background-light{
+    background-color:rgba(243, 243, 243, 1);
+}
+.background-dark{
+    background-color:rgba(49, 48, 55, 1);
+}
+
 .title-light{
     color: rgba(49, 48, 55, 1);
 }
@@ -41,3 +48,4 @@ button{
 .card__icons-dark{
     border-bottom: 1px solid rgba(141, 142, 151, 1);
 }
+

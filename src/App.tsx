@@ -7,51 +7,57 @@ import Tabs from "./copmonents/Tabs/Tabs";
 import Textarea from "./copmonents/Textarea/Textarea";
 import Input from "./copmonents/Input/Input";
 import PostList from "./copmonents/PostList/PostList";
+import Header from './copmonents/Header/Header';
+import SelectedPage from "./pages/SelectedPage/SelectedPage";
+import AllPosts from "./pages/AllPosts/AllPosts";
 
 function App() {
   return (
     <>
-          <Title>Sign In</Title>
-          <Button
-            typeButton = "primary"
-            buttonState={false}
-            content = "Primary"
-          />
-          <Button
-            typeButton = "secondary"
-            buttonState={false}
-            content = "Secondary"
-          />
-          <Button
-            typeButton = "secondary2"
-            buttonState={true}
-            content = "Secondary 2"
-          />
-          <UserName>Gospodarik Polina</UserName>
-          <Tabs></Tabs>
-          <Input compound = "text"
-               inputType="text"
-               title="Title"
-               isActive={false}
-               errorText="Error text"
-               isError={false}
-          ></Input>
-          <Input compound = "email"
-               inputType="email"
-               title="Email"
-               isActive={true}
-               errorText="Error text"
-               isError={false}
-          ></Input>
-          <Input compound = "password"
-               inputType="password"
-               title="Password"
-               isActive={false}
-               errorText="Error text"
-               isError={true}
-          ></Input>
-          <Textarea compound = "text" placeholderText="Add your text"></Textarea>
-          <PostList></PostList>
+        <AllPosts></AllPosts>
+        <SelectedPage></SelectedPage>
+        <Header></Header>
+        <Title>Sign In</Title>
+        <Button
+        typeButton = "primary"
+        buttonState={false}
+        content = "Primary"
+        />
+        <Button
+        typeButton = "secondary"
+        buttonState={false}
+        content = "Secondary"
+        />
+        <Button
+        typeButton = "secondary2"
+        buttonState={true}
+        content = "Secondary 2"
+        />
+        <UserName>Gospodarik Polina</UserName>
+        <Tabs></Tabs>
+        <Input compound = "text"
+           inputType="text"
+           title="Title"
+           isActive={false}
+           errorText="Error text"
+           isError={false}
+        ></Input>
+        <Input compound = "email"
+           inputType="email"
+           title="Email"
+           isActive={true}
+           errorText="Error text"
+           isError={false}
+        ></Input>
+        <Input compound = "password"
+           inputType="password"
+           title="Password"
+           isActive={false}
+           errorText="Error text"
+           isError={true}
+        ></Input>
+        <Textarea compound = "text" placeholderText="Add your text"></Textarea>
+        <PostList></PostList>
     </>
   );
 }

@@ -7,7 +7,7 @@ type TTitle = {
 const Title = ({children}: TTitle)=> {
     return (
         <>
-            <h1 className = "title">{children}</h1>
+            <h1 className = "title title-light">{children}</h1>
         </>
     );
 }

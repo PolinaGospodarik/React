@@ -1,5 +1,4 @@
 .tabs__item{
-    background-color: #fff;
     padding: 0 40px 24px;
     border-bottom: 2px solid transparent;
     margin-right: 40px;
@@ -7,6 +6,18 @@
     font-size: 16px;
     font-weight: 600;
     transition: 0.3s ease-in-out;
+}
+
+.tabs__item-light:active {
+    border-bottom:  2px solid rgba(49, 48, 55, 1);
+}
+
+.tabs__item-dark{
+    color: rgba(255, 255, 255, 1);
+}
+
+.tabs__item-dark:active {
+    border-bottom: 2px solid rgba(255, 255, 255, 1);
 }
 
 .tabs__item:last-child{
@@ -21,9 +32,6 @@
     cursor: not-allowed;
 }
 
-.tabs__item:active {
-    border-bottom:  2px solid rgba(49, 48, 55, 1);
-}
 .tabs__item:disabled:active {
     border-bottom:  2px solid transparent;
     cursor: not-allowed;

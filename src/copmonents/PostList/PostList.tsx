@@ -7,12 +7,12 @@ import './PostList.css'; // Импортируем стили
 
 const PostList = () => {
     return (
-        <div className="grid-container">
+        <div className="grid-container grid-container-dark">
             {cards.map((card, index) => {
                 const cardClass = `post-${card.id}`;
                 if (index === 0) {
                     return (
-                        <div  className={`post-big ${cardClass}`}>
+                        <div key={card.id} className={`post-big ${cardClass}`}>
                             <PostCardBig
                                 id={card.id}
                                 image={card.image}
@@ -24,7 +24,7 @@ const PostList = () => {
                     );
                 } else if (index > 0 && index <= 4) {
                     return (
-                        <div  className={`post-medium ${cardClass}`}>
+                        <div key={card.id} className={`post-medium ${cardClass}`}>
                             <PostCardMedium
                                 id={card.id}
                                 image={card.image}
@@ -35,7 +35,7 @@ const PostList = () => {
                     );
                 } else if (index > 4 && index <= 10) {
                     return (
-                        <div className={`post-small ${cardClass}`}>
+                        <div key={card.id} className={`post-small ${cardClass}`}>
                             <PostCardSmall
                                 id={card.id}
                                 image={card.image}

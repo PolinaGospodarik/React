@@ -1,0 +1,21 @@
+.all-posts-light{
+    background-color:rgba(243, 243, 243, 1);
+}
+
+.all-posts-dark{
+    background-color:rgba(49, 48, 55, 1);
+}
+
+.all-posts-container{
+    max-width: 1120px;
+    margin: 72px auto 0;
+    padding-bottom: 72px;
+}
+
+.all-posts-wrap__title{
+    margin-bottom: 40px;
+}
+
+.all-posts-wrap__tabs{
+    margin-bottom: 64px;
+}

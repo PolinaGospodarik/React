@@ -1,0 +1,84 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 72px;
+    padding-bottom: 72px;
+}
+
+.container-number-post{
+    width: 1120px;
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+.container-title{
+    width: 1120px;
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 48px;
+}
+
+.container-photo{
+    width: 992px;
+    height: 518px;
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+
+.photo{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-description{
+    width: 920px;
+    margin-bottom: 48px;
+    color: rgba(49, 48, 55, 1);
+}
+.container__icons{
+    width: 920px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.container__icons-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 182px;
+}
+
+.container__button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    background-color:rgba(232, 232, 232, 1);
+    color: rgba(49, 48, 55, 1);
+    font-size: 18px;
+    font-weight: 600;
+    border-radius:2px;
+}
+
+.container__icon{
+    font-size:22px;
+    color:rgba(76, 75, 94, 1);
+}
+
+.container__icon-dislike{
+    transform: scale(-1, 1);
+}
+
+.container__icon-bookmark{
+    margin-right: 10px;
+}
+
+
+
+
+

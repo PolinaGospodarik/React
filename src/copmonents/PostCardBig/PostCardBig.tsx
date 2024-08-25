@@ -20,7 +20,7 @@ const PostCardBig = ({image, date, title, description}: Tcards) => {
                 <div className="big-card__content">
                     <div className="big-card__content-left">
                         <span className="big-card__date">{date}</span>
-                        <h2 className="big-card__title">{title}</h2>
+                        <h2 className="big-card__title title-light">{title}</h2>
                         <p className="big-card__description">{description}</p>
                     </div>
                     <div className="big-card__content-right">
@@ -29,14 +29,14 @@ const PostCardBig = ({image, date, title, description}: Tcards) => {
                         </div>
                     </div>
                 </div>
-                <div className="big-card__icons">
+                <div className="big-card__icons card__icons-light">
                     <div className="big-card__icons-left">
-                        <button><FontAwesomeIcon icon={faThumbsUp} className="big-card__icon-like"/></button>
-                        <button><FontAwesomeIcon icon={faThumbsDown} className="big-card__icon-dislike"/></button>
+                        <button><FontAwesomeIcon icon={faThumbsUp} className="big-card__icon card__icon-light big-card__icon-like"/></button>
+                        <button><FontAwesomeIcon icon={faThumbsDown} className="big-card__icon card__icon-light big-card__icon-dislike"/></button>
                     </div>
                     <div className="big-card__icons-right">
-                        <button><FontAwesomeIcon icon={faBookmark} className="big-card__icon-bookmark"/></button>
-                        <button><FontAwesomeIcon icon={faEllipsis} className="big-card__icon-menu"/></button>
+                        <button><FontAwesomeIcon icon={faBookmark} className="big-card__icon card__icon-light big-card__icon-bookmark"/></button>
+                        <button><FontAwesomeIcon icon={faEllipsis} className="big-card__icon card__icon-light big-card__icon-menu"/></button>
                     </div>
                 </div>
             </div>

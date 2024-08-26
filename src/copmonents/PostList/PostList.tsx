@@ -2,45 +2,45 @@ import React from 'react';
 import PostCardBig from '../PostCardBig/PostCardBig';
 import PostCardMedium from '../PostCardMedium/PostCardMedium';
 import PostCardSmall from '../PostCardSmall/PostCardSmall';
-import { cards } from '../../data';
-import './PostList.css'; // Импортируем стили
+import {Tcards} from '../../data';
+import './PostList.css';
 
-const PostList = () => {
+const PostList = ({posts}: {posts: Tcards[]}) => {
     return (
         <div className="grid-container grid-container-dark">
-            {cards.map((card, index) => {
-                const cardClass = `post-${card.id}`;
+            {posts.map((item, index) => {
+                const cardClass = `post-${item.id}`;
                 if (index === 0) {
                     return (
-                        <div key={card.id} className={`post-big ${cardClass}`}>
+                        <div key={item.id} className={`post-big ${cardClass}`}>
                             <PostCardBig
-                                id={card.id}
-                                image={card.image}
-                                date={card.date}
-                                title={card.title}
-                                description={card.description}
+                                id={item.id}
+                                image={item.image}
+                                date={item.date}
+                                title={item.title}
+                                description={item.description}
                             />
                         </div>
                     );
                 } else if (index > 0 && index <= 4) {
                     return (
-                        <div key={card.id} className={`post-medium ${cardClass}`}>
+                        <div key={item.id} className={`post-medium ${cardClass}`}>
                             <PostCardMedium
-                                id={card.id}
-                                image={card.image}
-                                date={card.date}
-                                title={card.title}
+                                id={item.id}
+                                image={item.image}
+                                date={item.date}
+                                title={item.title}
                             />
                         </div>
                     );
                 } else if (index > 4 && index <= 10) {
                     return (
-                        <div key={card.id} className={`post-small ${cardClass}`}>
+                        <div key={item.id} className={`post-small ${cardClass}`}>
                             <PostCardSmall
-                                id={card.id}
-                                image={card.image}
-                                date={card.date}
-                                title={card.title}
+                                id={item.id}
+                                image={item.image}
+                                date={item.date}
+                                title={item.title}
                             />
                         </div>
                     );

@@ -6,7 +6,6 @@ import UserName from "./copmonents/UserName/UserName";
 import Tabs from "./copmonents/Tabs/Tabs";
 import Textarea from "./copmonents/Textarea/Textarea";
 import Input from "./copmonents/Input/Input";
-import PostList from "./copmonents/PostList/PostList";
 import Header from './copmonents/Header/Header';
 import SelectedPage from "./pages/SelectedPage/SelectedPage";
 import AllPosts from "./pages/AllPosts/AllPosts";
@@ -57,7 +56,6 @@ function App() {
            isError={true}
         ></Input>
         <Textarea compound = "text" placeholderText="Add your text"></Textarea>
-        <PostList></PostList>
     </>
   );
 }

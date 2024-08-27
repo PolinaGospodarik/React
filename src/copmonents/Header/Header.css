@@ -7,6 +7,34 @@
     background-color: rgba(34, 49, 170, 1);
 }
 
+.header-left{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.search-input-wrapper{
+    width: 100%;
+    background-color: lightgreen;
+}
+
+.search-input{
+    width: 100%;
+    height: 100%;
+    padding: 30px 32px;
+    background-color:rgba(83, 96, 205, 1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.search-input::placeholder{
+    color: rgba(255, 255, 255, 0.5);
+}
+.search-input:focus{
+    outline:none;
+}
+
 .icon{
     display: flex;
     align-items: center;
@@ -18,6 +46,8 @@
 .menu{
     border-right: 1px solid rgba(83, 96, 205, 1);
 }
+
+
 
 .header-right{
     display: flex;

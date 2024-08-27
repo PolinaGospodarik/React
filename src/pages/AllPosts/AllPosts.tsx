@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import "./AllPosts.css"
 import Header from "../../copmonents/Header/Header";
 import Tabs from '../../copmonents/Tabs/Tabs';
 import Title from "../../copmonents/Title/Title";
 import PostList from "../../copmonents/PostList/PostList";
-
-import "./AllPosts.css"
 import Spinner from "../../copmonents/Spinner/Spinner";
 import Footer from "../../copmonents/Footer/Footer";
+import {themeContext} from "../../providers/ThemeContext";
 
 const AllPosts = () => {
 
     const [posts, setPosts] = useState([]);
+    const [color, setColor] = useContext(themeContext);
 
     useEffect(() => {
         fetch('https://studapi.teachmeskills.by/blog/posts/?limit=11')
@@ -20,7 +21,7 @@ const AllPosts = () => {
 
     return (
         <>
-        <div className="all-posts background-light">
+        <div className={`background-${color}`}>
             <Header></Header>
             <div className="all-posts-container">
                 <div className="all-posts-wrap__title"><Title>Blog</Title></div>

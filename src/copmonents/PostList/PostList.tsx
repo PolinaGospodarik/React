@@ -1,13 +1,12 @@
-import React from 'react';
+import './PostList.css';
 import PostCardBig from '../PostCardBig/PostCardBig';
 import PostCardMedium from '../PostCardMedium/PostCardMedium';
 import PostCardSmall from '../PostCardSmall/PostCardSmall';
-import {Tcards} from '../../data';
-import './PostList.css';
+import {TPost} from "../../types/types";
 
-const PostList = ({posts}: {posts: Tcards[]}) => {
+const PostList = ({posts}: {posts: TPost[]}) => {
     return (
-        <div className="grid-container grid-container-dark">
+        <div className="grid-container">
             {posts.map((item, index) => {
                 const cardClass = `post-${item.id}`;
                 if (index === 0) {

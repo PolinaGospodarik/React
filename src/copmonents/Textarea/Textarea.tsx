@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
 import "./Textarea.css";
-
-type TTextarea = {
-    compound: string;
-    placeholderText: string;
-}
+import {TTextarea} from "../../types/types";
 
 const Textarea = ({compound, placeholderText}: TTextarea) => {
 

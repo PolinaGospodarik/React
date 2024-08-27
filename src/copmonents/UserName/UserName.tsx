@@ -1,8 +1,5 @@
 import './UserName.css';
-
-type TUserName = {
-    children: string;
-}
+import {TUserName} from "../../types/types";
 
 const UserName = ({children}: TUserName) => {
 

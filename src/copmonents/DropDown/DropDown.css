@@ -1,5 +1,6 @@
 .dropdown{
     position: absolute;
+    z-index: 33;
     max-width: 236px;
     display: flex;
     flex-direction: column;

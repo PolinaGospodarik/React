@@ -1,14 +1,6 @@
 import React, {useState} from 'react';
 import "./Input.css";
-
-type TInput ={
-    compound: string,
-    inputType: string,
-    isActive: boolean,
-    title: string,
-    errorText: string,
-    isError: boolean
-}
+import {TInput} from "../../types/types";
 
 const Input = ({compound,inputType,isActive, title, errorText, isError}:TInput) => {
 

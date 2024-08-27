@@ -1,5 +1,5 @@
 .small-card{
-    width:352px;
+    /*width:352px;*/
     display: flex;
     flex-direction: column;
     justify-content: space-between;

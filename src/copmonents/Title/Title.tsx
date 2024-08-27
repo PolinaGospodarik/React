@@ -1,13 +1,15 @@
 import './Title.css';
-
-type TTitle = {
-    children: string;
-}
+import {TTitle} from "../../types/types";
+import {useContext} from "react";
+import {themeContext} from "../../providers/ThemeContext";
 
 const Title = ({children}: TTitle)=> {
+
+    const [color, setColor] = useContext(themeContext);
+
     return (
         <>
-            <h1 className = "title title-light">{children}</h1>
+            <h1 className ={`title title-${color}`}>{children}</h1>
         </>
     );
 }

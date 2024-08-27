@@ -1,18 +1,15 @@
-import React from 'react';
+import "./PostCardMedium.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBookmark, faThumbsDown, faThumbsUp} from "@fortawesome/free-regular-svg-icons";
 import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
+import {TPost} from "../../types/types";
+import {useContext} from "react";
+import {themeContext} from "../../providers/ThemeContext";
 
-import "./PostCardMedium.css"
+const PostCardMedium = ({image, date, title}: TPost) => {
 
-type Tcards = {
-    id: number,
-    image: string,
-    date: string,
-    title: string
-}
+    const [color, setColor] = useContext(themeContext);
 
-const PostCardMedium = ({image, date, title}: Tcards) => {
     return (
         <>
             <div>
@@ -22,16 +19,16 @@ const PostCardMedium = ({image, date, title}: Tcards) => {
                             <img src={image} alt={title} className="medium-card__image"/>
                         </div>
                         <span className="medium-card__date">{date}</span>
-                        <h2 className="medium-card__title title-light">{title}</h2>
+                        <h2 className={`medium-card__title title-${color}`}>{title}</h2>
                     </div>
-                    <div className="medium-card__icons card__icons-light">
+                    <div className={`medium-card__icons card__icons-${color}`}>
                         <div className="medium-card__icons-left">
-                            <button><FontAwesomeIcon icon={faThumbsUp} className="medium-card__icon card__icon-light medium-card__icon-like"/></button>
-                            <button><FontAwesomeIcon icon={faThumbsDown} className="medium-card__icon card__icon-light medium-card__icon-dislike"/></button>
+                            <button><FontAwesomeIcon icon={faThumbsUp} className={`medium-card__icon card__icon-${color} medium-card__icon-like`}/></button>
+                            <button><FontAwesomeIcon icon={faThumbsDown} className={`medium-card__icon card__icon-${color} medium-card__icon-dislike`}/></button>
                         </div>
                         <div className="medium-card__icons-right">
-                            <button><FontAwesomeIcon icon={faBookmark} className="medium-card__icon card__icon-light medium-card__icon-bookmark"/></button>
-                            <button><FontAwesomeIcon icon={faEllipsis} className="medium-card__icon card__icon-light medium-card__icon-menu"/></button>
+                            <button><FontAwesomeIcon icon={faBookmark} className={`medium-card__icon card__icon-${color} medium-card__icon-bookmark`}/></button>
+                            <button><FontAwesomeIcon icon={faEllipsis} className={`medium-card__icon card__icon-${color} medium-card__icon-menu`}/></button>
                         </div>
                     </div>
                 </div>

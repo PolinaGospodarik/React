@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 72px;
-    padding-bottom: 72px;
+    padding: 72px 0;
 }
 
 .container-number-post{

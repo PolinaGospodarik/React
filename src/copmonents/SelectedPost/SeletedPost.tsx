@@ -13,7 +13,7 @@ const SelectedPost = ({post}:{post:TPost}) => {
     return (
         <>
             <div className='container'>
-                <div className='container-number-post'>Home | {post.lesson_num}</div>
+                <div className='container-number-post'>Home | {post.id}</div>
                 <div className='container-title'><Title>{post.title}</Title></div>
                 <div className='container-photo'>
                     <img src={post.image} alt='photo' className='photo'/>

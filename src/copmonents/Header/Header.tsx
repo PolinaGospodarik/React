@@ -4,12 +4,19 @@ import UserName from "../UserName/UserName";
 import DropDown from "../DropDown/DropDown";
 import { faMagnifyingGlass, faBars, faXmark} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {useNavigate} from "react-router-dom";
 
 
 const Header = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const nav = useNavigate();
+
+    const handleSearch = () => {
+        setIsSearchOpen(!isSearchOpen);
+        {!isSearchOpen ?  nav("/search") : (nav("/"))}
+    }
 
     return (
         <>
@@ -22,8 +29,7 @@ const Header = () => {
                         </div>}
                 </div>
                 <div className="header-right">
-
-                    <div onClick={() => setIsSearchOpen(!isSearchOpen)} className="search"><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon icon"/></div>
+                    <div onClick={handleSearch} className="search"><FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon icon"/></div>
                     <UserName>Gospodarik Polina</UserName>
                 </div>
             </header>

@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./AllPosts.css"
-import Header from "../../copmonents/Header/Header";
 import Tabs from '../../copmonents/Tabs/Tabs';
 import Title from "../../copmonents/Title/Title";
 import PostList from "../../copmonents/PostList/PostList";
@@ -22,7 +21,6 @@ const AllPosts = () => {
     return (
         <>
         <div className={`background-${color}`}>
-            <Header></Header>
             <div className="all-posts-container">
                 <div className="all-posts-wrap__title"><Title>Blog</Title></div>
                 <div className="all-posts-wrap__tabs"><Tabs></Tabs></div>

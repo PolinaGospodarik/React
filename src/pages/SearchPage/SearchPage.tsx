@@ -1,11 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./SearchPage.css"
-import Header from "../../copmonents/Header/Header";
 import Title from "../../copmonents/Title/Title";
 import Footer from "../../copmonents/Footer/Footer";
 import {TPost} from "../../types/types";
 import {themeContext} from "../../providers/ThemeContext";
 import PostSearch from "../../copmonents/PostSearch/PostSearch";
+import Spinner from "../../copmonents/Spinner/Spinner";
+import {Link, useNavigate} from "react-router-dom";
+
 
 const SearchPage = () => {
 
@@ -20,25 +22,28 @@ const SearchPage = () => {
 
     return (
         <>
+            {posts.length === 0 ? <Spinner></Spinner> :
             <div className={`background-${color}`}>
-                <Header></Header>
                 <div className="search-page__container">
                     <div className="search-page__title">
                         <Title>Search results</Title>
                     </div>
                     {posts.map(item => {
                         return (
-                            <PostSearch
-                                id={item.id}
-                                image={item.image}
-                                date={item.date}
-                                title={item.title}
-                            />
+                            <Link to={`/${item.id}`} key={item.id} >
+                                <PostSearch
+                                    id={item.id}
+                                    image={item.image}
+                                    date={item.date}
+                                    title={item.title}
+                                />
+                            </Link>
                         );
                     })}
                 </div>
                 <Footer></Footer>
             </div>
+            }
         </>
     );
 };

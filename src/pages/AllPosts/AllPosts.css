@@ -1,7 +1,7 @@
 .all-posts-container{
     max-width: 1120px;
-    margin: 72px auto 0;
-    padding-bottom: 72px;
+    margin: 0 auto;
+    padding: 72px 0;
 }
 
 .all-posts-wrap__title{

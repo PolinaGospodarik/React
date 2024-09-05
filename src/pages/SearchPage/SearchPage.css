@@ -1,5 +1,6 @@
 .search-page__container{
-    margin: 72px auto;
+    margin: 0 auto;
+    padding: 72px 0;
     max-width: 1120px;
 }
 

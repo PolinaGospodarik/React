@@ -4,6 +4,7 @@ import { faSun, faMoon } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useContext} from "react";
 import {themeContext} from "../../providers/ThemeContext";
+import {Link} from "react-router-dom";
 
 const DropDown = () => {
 
@@ -14,7 +15,7 @@ const DropDown = () => {
             <div className='dropdown'>
                 <div className="dropdown-top">
                     <div className='dropdown-item user-item'><UserName>Gospodarik Polina</UserName></div>
-                    <div className='dropdown-item'>Home</div>
+                    <Link to="/" className='dropdown-item'>Home</Link>
                     <div className='dropdown-item'>Add post</div>
                 </div>
                 <div className="dropdown-bottom">

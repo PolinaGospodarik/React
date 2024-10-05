@@ -1,3 +1,5 @@
+import React from "react";
+
 export type TTitle = {
     children: string;
 }
@@ -14,7 +16,7 @@ export type TInput ={
     isActive: boolean,
     title: string,
     errorText: string,
-    isError: boolean
+    isError: boolean,
 }
 
 export type TPost = {
@@ -26,11 +28,19 @@ export type TPost = {
     title: string,
     description?: string,
     author?: number
+    onFavoriteToggle?: (event: React.MouseEvent, post: TPost) => void,
+    isFavorite?: boolean
+}
+
+export type TFavoritePost = TPost & {
+    onFavoriteToggle: (event: React.MouseEvent, post: TPost) => void;
+    isFavorite: boolean;
 }
 
 export type TTabsElements = {
     children: string;
     buttonState: boolean;
+    changeActive: ()=>void;
 }
 
 export type TTextarea = {

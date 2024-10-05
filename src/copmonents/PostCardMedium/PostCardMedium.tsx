@@ -1,12 +1,12 @@
 import "./PostCardMedium.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBookmark, faThumbsDown, faThumbsUp} from "@fortawesome/free-regular-svg-icons";
-import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
-import {TPost} from "../../types/types";
+import {faBookmark as regularBookmark, faBookmark, faThumbsDown, faThumbsUp} from "@fortawesome/free-regular-svg-icons";
+import {faBookmark as solidBookmark, faEllipsis} from "@fortawesome/free-solid-svg-icons";
+import {TFavoritePost} from "../../types/types";
 import {useContext} from "react";
 import {themeContext} from "../../providers/ThemeContext";
 
-const PostCardMedium = ({image, date, title}: TPost) => {
+const PostCardMedium = ({ id, image, date, title, onFavoriteToggle, isFavorite}: TFavoritePost) => {
 
     const [color, setColor] = useContext(themeContext);
 
@@ -27,7 +27,7 @@ const PostCardMedium = ({image, date, title}: TPost) => {
                             <button><FontAwesomeIcon icon={faThumbsDown} className={`medium-card__icon card__icon-${color} medium-card__icon-dislike`}/></button>
                         </div>
                         <div className="medium-card__icons-right">
-                            <button><FontAwesomeIcon icon={faBookmark} className={`medium-card__icon card__icon-${color} medium-card__icon-bookmark`}/></button>
+                            <button onClick={(event) => onFavoriteToggle(event, { id, image, date, title})}><FontAwesomeIcon icon={isFavorite ? solidBookmark :regularBookmark} className={`medium-card__icon card__icon-${color} medium-card__icon-bookmark` }/></button>
                             <button><FontAwesomeIcon icon={faEllipsis} className={`medium-card__icon card__icon-${color} medium-card__icon-menu`}/></button>
                         </div>
                     </div>

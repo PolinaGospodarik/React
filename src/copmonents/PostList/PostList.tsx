@@ -4,11 +4,33 @@ import PostCardMedium from '../PostCardMedium/PostCardMedium';
 import PostCardSmall from '../PostCardSmall/PostCardSmall';
 import {TPost} from "../../types/types";
 import {Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavorites, removeFromFavorites } from "../../slice/blog";
+import { useEffect } from "react";
 
 const PostList = ({posts}: {posts: TPost[]}) => {
+
+    const favorites = useSelector((state:any) => state.blog.favorites);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(favorites);
+    }, [favorites]);
+
+    const handleFavorites = (event: React.MouseEvent, post: TPost) => {
+        event.preventDefault();
+        const isFavorite = favorites.some((favoritePost:TPost) => favoritePost.id === post.id);
+        if (isFavorite) {
+            dispatch(removeFromFavorites(post.id));
+        } else {
+            dispatch(addToFavorites(post));
+        }
+    };
+
     return (
         <div className="grid-container">
-            {posts.map((item, index) => {
+            {posts.map((item, index, ) => {
+                const isFavorite = favorites.some((favoritePost:TPost) => favoritePost.id === item.id);
                 const cardClass = `post-${item.id}`;
                 if (index === 0) {
                     return (
@@ -19,6 +41,8 @@ const PostList = ({posts}: {posts: TPost[]}) => {
                                 date={item.date}
                                 title={item.title}
                                 description={item.description}
+                                onFavoriteToggle = {handleFavorites}
+                                isFavorite={isFavorite}
                             />
                         </Link>
                     );
@@ -30,6 +54,8 @@ const PostList = ({posts}: {posts: TPost[]}) => {
                                 image={item.image}
                                 date={item.date}
                                 title={item.title}
+                                onFavoriteToggle = {handleFavorites}
+                                isFavorite={isFavorite}
                             />
                         </Link>
                     );
@@ -41,6 +67,8 @@ const PostList = ({posts}: {posts: TPost[]}) => {
                                 image={item.image}
                                 date={item.date}
                                 title={item.title}
+                                onFavoriteToggle = {handleFavorites}
+                                isFavorite={isFavorite}
                             />
                         </Link>
                     );

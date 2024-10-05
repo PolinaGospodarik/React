@@ -1,12 +1,12 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import "./PostSearch.css";
-import {faBookmark, faThumbsDown, faThumbsUp} from "@fortawesome/free-regular-svg-icons";
-import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
+import {faBookmark as regularBookmark, faBookmark, faThumbsDown, faThumbsUp} from "@fortawesome/free-regular-svg-icons";
+import {faBookmark as solidBookmark, faEllipsis} from "@fortawesome/free-solid-svg-icons";
 import {useContext} from "react";
 import {themeContext} from "../../providers/ThemeContext";
-import {TPost} from "../../types/types";
+import {TFavoritePost} from "../../types/types";
 
-const PostSearch = ({image, date, title}: TPost) => {
+const PostSearch = ({id, image, date, title, onFavoriteToggle, isFavorite}: TFavoritePost) => {
 
     const [color, setColor] = useContext(themeContext);
 
@@ -34,8 +34,8 @@ const PostSearch = ({image, date, title}: TPost) => {
                         </button>
                     </div>
                     <div className="search-card__icons-right">
-                        <button>
-                            <FontAwesomeIcon icon={faBookmark} className={`search-card__icon card__icon-${color} search-card__icon-bookmark`}/>
+                        <button onClick={(event) => onFavoriteToggle(event,{ id, image, date, title})}>
+                            <FontAwesomeIcon icon={isFavorite ? solidBookmark :regularBookmark} className={`search-card__icon card__icon-${color} search-card__icon-bookmark`}/>
                         </button>
                         <button>
                             <FontAwesomeIcon icon={faEllipsis} className={`search-card__icon card__icon-${color} search-card__icon-menu`}/>

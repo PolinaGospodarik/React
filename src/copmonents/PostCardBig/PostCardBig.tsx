@@ -1,13 +1,14 @@
 import './PostCardBig.css'
-import { faThumbsUp, faThumbsDown, faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
+// import { useDispatch, useSelector } from "react-redux";
+import { faThumbsUp, faThumbsDown, faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faEllipsis, faBookmark as solidBookmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {TPost} from "../../types/types";
-import {useContext} from "react";
+import {TFavoritePost} from "../../types/types";
+import React, {useContext, useState} from "react";
 import {themeContext} from "../../providers/ThemeContext";
+// import { addToFavorites, removeFromFavorites } from "../../slice/blog";
 
-
-const PostCardBig = ({image, date, title, description}: TPost) => {
+const PostCardBig = ({ id, image, date, title, description, onFavoriteToggle, isFavorite }: TFavoritePost)=>{
 
     const [color, setColor] = useContext(themeContext);
 
@@ -32,7 +33,9 @@ const PostCardBig = ({image, date, title, description}: TPost) => {
                         <button><FontAwesomeIcon icon={faThumbsDown} className={`big-card__icon card__icon-${color} big-card__icon-dislike`}/></button>
                     </div>
                     <div className="big-card__icons-right">
-                        <button><FontAwesomeIcon icon={faBookmark} className={`big-card__icon card__icon-${color} big-card__icon-bookmark`}/></button>
+                        <button onClick={(event) => onFavoriteToggle(event,{ id, image, date, title, description})}>
+                            <FontAwesomeIcon icon={isFavorite ? solidBookmark :regularBookmark} className={`big-card__icon card__icon-${color} big-card__icon-bookmark`}/>
+                        </button>
                         <button><FontAwesomeIcon icon={faEllipsis} className={`big-card__icon card__icon-${color} big-card__icon-menu`}/></button>
                     </div>
                 </div>

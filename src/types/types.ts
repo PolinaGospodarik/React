@@ -28,8 +28,6 @@ export type TPost = {
     title: string,
     description?: string,
     author?: number
-    onFavoriteToggle?: (event: React.MouseEvent, post: TPost) => void,
-    isFavorite?: boolean
 }
 
 export type TFavoritePost = TPost & {

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import "./AllPosts.css"
 import Tabs from '../../copmonents/Tabs/Tabs';
 import Title from "../../copmonents/Title/Title";
@@ -6,29 +6,28 @@ import PostList from "../../copmonents/PostList/PostList";
 import Spinner from "../../copmonents/Spinner/Spinner";
 import Footer from "../../copmonents/Footer/Footer";
 import {themeContext} from "../../providers/ThemeContext";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import FavoritesPost from "../../copmonents/FavoritesPost/FavoritesPost";
+import {fetchPosts} from "../../slice/blog";
 
 const AllPosts = () => {
 
-    const [posts, setPosts] = useState([]);
     const [color, setColor] = useContext(themeContext);
 
-    const data = useSelector((state: any) => state.blog)
+    const dispatch = useDispatch()<any>;
+    const {postsAll, favorites, activeTab, status, error}= useSelector((state: any) => state.blog)
 
     const checkActiveTab =()=>{
-        if (data.activeTab === "all"){
-            return(posts.length === 0 ? <Spinner></Spinner> : <PostList posts={posts}></PostList>)
-        }else if (data.activeTab === "favorites"){
-            return(data.favorites.length === 0 ? <div>Нет любимых</div> : <FavoritesPost posts={data.favorites}></FavoritesPost>)
+        if (activeTab === "all"){
+            return( status === 'loading'  ? <Spinner /> : error ? <div>{error}</div> : <PostList posts={postsAll}/>)
+        }else if (activeTab === "favorites"){
+            return(favorites.length === 0 ? <div>Нет любимых</div> : <FavoritesPost posts={favorites}></FavoritesPost>)
         }
     }
 
     useEffect(() => {
-        fetch('https://studapi.teachmeskills.by/blog/posts/?limit=11')
-            .then(response => response.json())
-            .then(json => setPosts(json.results))
-    }, [])
+        dispatch(fetchPosts());
+    }, [dispatch]);
 
     return (
         <>

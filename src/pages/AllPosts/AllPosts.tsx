@@ -8,14 +8,14 @@ import Footer from "../../copmonents/Footer/Footer";
 import {themeContext} from "../../providers/ThemeContext";
 import {useDispatch, useSelector} from "react-redux";
 import FavoritesPost from "../../copmonents/FavoritesPost/FavoritesPost";
-import {fetchPosts} from "../../slice/blog";
+import {decrementOffset, fetchPosts, incrementOffset} from "../../slice/blog";
 
 const AllPosts = () => {
 
-    const [color, setColor] = useContext(themeContext);
+    const [color,  setColor] = useContext(themeContext);
 
     const dispatch = useDispatch()<any>;
-    const {postsAll, favorites, activeTab, status, error}= useSelector((state: any) => state.blog)
+    const {postsAll, favorites, activeTab, status, error, offset}= useSelector((state: any) => state.blog)
 
     const checkActiveTab =()=>{
         if (activeTab === "all"){
@@ -26,21 +26,25 @@ const AllPosts = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchPosts());
-    }, [dispatch]);
+        dispatch(fetchPosts(offset));
+    }, [offset]);
 
     return (
         <>
-        <div className={`all-posts-wrapper background-${color}`}>
-            <div className="all-posts-container">
-                <div className="all-posts-wrap__title"><Title>Blog</Title></div>
-                <div className="all-posts-wrap__tabs"><Tabs></Tabs></div>
-                <div className="all-posts-wrap__post-list">
-                    {checkActiveTab()}
+            <div className={`all-posts-wrapper background-${color}`}>
+                <div className="all-posts-container">
+                    <div className="all-posts-wrap__title"><Title>Blog</Title></div>
+                    <div className="all-posts-wrap__tabs"><Tabs></Tabs></div>
+                    <div className="all-posts-wrap__post-list">
+                        {checkActiveTab()}
+                    </div>
+                    <div className="all-posts__pagination">
+                        <div className="pagination__previous" onClick={() => dispatch(decrementOffset())}> ← Prev</div>
+                        <div className="pagination__next" onClick={() => dispatch(incrementOffset())}>Next → </div>
+                    </div>
                 </div>
+                <Footer></Footer>
             </div>
-            <Footer></Footer>
-        </div>
         </>
     );
 };

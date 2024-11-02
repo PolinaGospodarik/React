@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import "./SearchPage.css"
 import Title from "../../copmonents/Title/Title";
 import Footer from "../../copmonents/Footer/Footer";
@@ -6,25 +6,19 @@ import {TPost} from "../../types/types";
 import {themeContext} from "../../providers/ThemeContext";
 import PostSearch from "../../copmonents/PostSearch/PostSearch";
 import Spinner from "../../copmonents/Spinner/Spinner";
-import {Link, useNavigate} from "react-router-dom";
-import {addToFavorites, removeFromFavorites} from "../../slice/blog";
+import {Link} from "react-router-dom";
+import {addToFavorites, decrementOffset, fetchPosts, incrementOffset, removeFromFavorites} from "../../slice/blog";
 import {useDispatch, useSelector} from "react-redux";
 
 
 const SearchPage = () => {
 
-    const [posts, setPosts] = useState<TPost[]>([]);
+    // const [posts, setPosts] = useState<TPost[]>([]);
     const [color, setColor] = useContext(themeContext);
 
+    const dispatch = useDispatch<any>();
+    const data = useSelector((state:any) => state.blog);
     const favorites = useSelector((state:any) => state.blog.favorites);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        fetch('https://studapi.teachmeskills.by/blog/posts/?limit=11')
-            .then(response => response.json())
-            .then(json => setPosts(json.results))
-    }, [])
-
 
     const handleFavorites = (event: React.MouseEvent, post: TPost) => {
         event.preventDefault();
@@ -36,32 +30,44 @@ const SearchPage = () => {
         }
     };
 
+    useEffect(() => {
+        dispatch(fetchPosts(data.offset));
+    }, [data.offset]);
+
     return (
         <>
-            {posts.length === 0 ? <Spinner></Spinner> :
-            <div className={`background-${color}`}>
-                <div className="search-page__container">
-                    <div className="search-page__title">
-                        <Title>Search results</Title>
+            {data.search.length === "loading" ? <Spinner></Spinner> :
+                    <div className={`background-${color}`}>
+                        <div className="search-page__container">
+                            <div className="search-page__title">
+                                <Title>Search results</Title>
+                            </div>
+                            {data.search.length === 0 ? <div className="no-results">Ничего не найдено</div> :
+                                data.search.map((item: any) => {
+                                    const isFavorite = favorites.some((favoritePost: TPost) => favoritePost.id === item.id);
+                                    return (
+                                        <Link to={`/${item.id}`} key={item.id}>
+                                            <PostSearch
+                                                id={item.id}
+                                                image={item.image}
+                                                date={item.date}
+                                                title={item.title}
+                                                onFavoriteToggle={handleFavorites}
+                                                isFavorite={isFavorite}
+                                            />
+                                        </Link>
+                                    );
+                                })}
+                            <div className="all-posts__pagination">
+                                <div className="pagination__previous" onClick={() => dispatch(decrementOffset())}> ←
+                                    Prev
+                                </div>
+                                <div className="pagination__next" onClick={() => dispatch(incrementOffset())}>Next →
+                                </div>
+                            </div>
+                        </div>
+                        <Footer></Footer>
                     </div>
-                    {posts.map(item => {
-                        const isFavorite = favorites.some((favoritePost:TPost) => favoritePost.id === item.id);
-                        return (
-                            <Link to={`/${item.id}`} key={item.id} >
-                                <PostSearch
-                                    id={item.id}
-                                    image={item.image}
-                                    date={item.date}
-                                    title={item.title}
-                                    onFavoriteToggle={handleFavorites}
-                                    isFavorite={isFavorite}
-                                />
-                            </Link>
-                        );
-                    })}
-                </div>
-                <Footer></Footer>
-            </div>
             }
         </>
     );

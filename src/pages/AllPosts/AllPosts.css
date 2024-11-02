@@ -5,7 +5,7 @@
 .all-posts-container{
     max-width: 1120px;
     margin: 0 auto;
-    padding: 72px 0;
+    padding-top: 72px;
 }
 
 .all-posts-wrap__title{
@@ -14,4 +14,10 @@
 
 .all-posts-wrap__tabs{
     margin-bottom: 64px;
+}
+.all-posts__pagination{
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

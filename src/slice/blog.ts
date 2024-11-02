@@ -3,9 +3,9 @@ import {TPost} from "../types/types";
 
 export const fetchPosts =createAsyncThunk(
     "blog/fetchPosts",
-    async function(_, {rejectWithValue}){
+    async function(offset: any, {rejectWithValue}){
         try{
-            const response = await fetch ("https://studapi.teachmeskills.by/blog/posts/?limit=11")
+            const response = await fetch (`https://studapi.teachmeskills.by/blog/posts/?limit=11&offset=${offset}`)
             if(!response.ok){
                 throw new Error("Технические шоколадки");
             }
@@ -34,6 +34,22 @@ export const fetchPostById  =createAsyncThunk(
     }
 )
 
+export const SearchPost  =createAsyncThunk(
+    "blog/SearchPost",
+    async function({ search, offset }:{search: string | undefined; offset: number }, {rejectWithValue}){
+        try{
+            const response = await fetch (`https://studapi.teachmeskills.by/blog/posts/?search=${search}&offset=${offset}`);
+            if(!response.ok){
+                throw new Error("Пост не найден");
+            }
+            return await response.json();
+        }
+        catch(error){
+            return rejectWithValue((error as Error).message);
+        }
+    }
+)
+
 
 const blogSlice = createSlice({
     name: 'blog',
@@ -43,7 +59,9 @@ const blogSlice = createSlice({
         favorites: [],
         activeTab: "all",
         status: null,
-        error: null
+        error: null,
+        search: [],
+        offset: 0
     },
     reducers:{
         addToFavorites: (state:any, {payload}: {payload:any} ) => {
@@ -57,6 +75,16 @@ const blogSlice = createSlice({
         },
         changeActiveTab: (state:any, {payload}: {payload:any} ) => {
             state.activeTab = payload
+        },
+        clearSearch: (state) => {
+            state.search = [];
+            state.offset = 0;
+        },
+        incrementOffset: (state) => {
+            state.offset+=10;
+        },
+        decrementOffset: (state) => {
+            state.offset-=10;
         }
     },
     extraReducers: (builder) =>{
@@ -95,12 +123,26 @@ const blogSlice = createSlice({
                 state.error = payload;
                 console.log(state.error);
             })
-
-        }
+            .addCase(SearchPost.pending, (state: any) => {
+                state.status = "loading";
+                state.error = null;
+            })
+            .addCase(SearchPost.fulfilled, (state: any, {payload}: {payload: any})=>{
+                state.status = "resolved";
+                state.error = null;
+                state.search = payload.results;
+                console.log(state.search);
+            })
+            .addCase(SearchPost.rejected, (state: any, {payload}: {payload: any}) => {
+                state.status = "rejected";
+                state.error = payload;
+                console.log(state.error);
+            })
+    }
 
     })
 
 const {actions, reducer} = blogSlice;
 
-export const { addToFavorites, removeFromFavorites, changeActiveTab } = actions;
+export const { addToFavorites, removeFromFavorites, changeActiveTab, clearSearch, incrementOffset, decrementOffset } = actions;
 export default reducer;

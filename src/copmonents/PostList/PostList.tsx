@@ -31,7 +31,7 @@ const PostList = ({posts}: {posts: TPost[]}) => {
         <div className="grid-container">
             {posts.map((item, index, ) => {
                 const isFavorite = favorites.some((favoritePost:TPost) => favoritePost.id === item.id);
-                const cardClass = `post-${item.id}`;
+                const cardClass = `post-${index+1}`;
                 if (index === 0) {
                     return (
                         <Link to={`/${item.id}`} key={item.id} className={`post-big ${cardClass}`}>

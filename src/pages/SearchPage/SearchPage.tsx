@@ -7,7 +7,14 @@ import {themeContext} from "../../providers/ThemeContext";
 import PostSearch from "../../copmonents/PostSearch/PostSearch";
 import Spinner from "../../copmonents/Spinner/Spinner";
 import {Link} from "react-router-dom";
-import {addToFavorites, decrementOffset, fetchPosts, incrementOffset, removeFromFavorites} from "../../slice/blog";
+import {
+    addToFavorites,
+    decrementOffset,
+    fetchPosts,
+    incrementOffset,
+    removeFromFavorites,
+    SearchPost
+} from "../../slice/blog";
 import {useDispatch, useSelector} from "react-redux";
 
 
@@ -18,6 +25,7 @@ const SearchPage = () => {
 
     const dispatch = useDispatch<any>();
     const data = useSelector((state:any) => state.blog);
+    const searchValue = useSelector((state:any) => state.blog.searchValue);
     const favorites = useSelector((state:any) => state.blog.favorites);
 
     const handleFavorites = (event: React.MouseEvent, post: TPost) => {
@@ -31,8 +39,8 @@ const SearchPage = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchPosts(data.offset));
-    }, [data.offset]);
+        dispatch(SearchPost({ search: searchValue, offset: data.offset }));
+    }, [data.offset, searchValue, dispatch]);
 
     return (
         <>
@@ -58,11 +66,11 @@ const SearchPage = () => {
                                         </Link>
                                     );
                                 })}
-                            <div className="all-posts__pagination">
-                                <div className="pagination__previous" onClick={() => dispatch(decrementOffset())}> ←
+                            <div className="search-page__pagination">
+                                <div className="search-page__pagination-previous" onClick={() => dispatch(decrementOffset())}> ←
                                     Prev
                                 </div>
-                                <div className="pagination__next" onClick={() => dispatch(incrementOffset())}>Next →
+                                <div className="search-page__pagination-next" onClick={() => dispatch(incrementOffset())}>Next →
                                 </div>
                             </div>
                         </div>

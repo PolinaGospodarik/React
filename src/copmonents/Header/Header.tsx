@@ -6,7 +6,7 @@
     import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
     import {useNavigate} from "react-router-dom";
     import {useDispatch, useSelector} from "react-redux";
-    import {SearchPost} from "../../slice/blog";
+    import {clearSearch, SearchPost, setSearchValue} from "../../slice/blog";
 
 
     const Header = () => {
@@ -17,19 +17,28 @@
         const  [inputText, SetInputText]= useState("");
         const dispatch = useDispatch<any>();
         const data = useSelector((item: any)=> item.blog.search)
+        const searchValue = useSelector((state: any) => state.blog.searchValue);
         const nav = useNavigate();
 
         // console.log(data.results);
 
         const handleSearch = () => {
             setIsSearchOpen(!isSearchOpen);
-            {!isSearchOpen ?  nav("/search") : (nav("/"))}
+            if (!isSearchOpen) {
+                nav("/search");
+            } else {
+                nav("/");
+                dispatch(clearSearch());
+            }
         }
 
-        const SearchText = (value: string) =>{
-            // console.log(value);
-            SetInputText(value);
-            dispatch(SearchPost({ search: value, offset: 0 }))
+        const SearchText = (value: string) => {
+            dispatch(setSearchValue(value));
+            if (value.trim() === "") {
+                dispatch(clearSearch());
+            } else {
+                dispatch(SearchPost({search: value, offset: 0}));
+            }
         }
 
         return (
@@ -39,7 +48,7 @@
                         <div onClick={() => setIsDropdownOpen(!isDropdownOpen)}>{ isDropdownOpen ? <FontAwesomeIcon icon={faXmark} className="menu icon"/> :  <FontAwesomeIcon icon={faBars} className="menu icon"/> }</div>
                         {isSearchOpen &&
                             <div className="search-input-wrapper">
-                                <input type="text" className="search-input" placeholder="Search..." onChange={(event)=>{SearchText(event.target.value)}}/>
+                                <input type="text" className="search-input" placeholder="Search..."  value={searchValue} onChange={(event)=>{SearchText(event.target.value)}}/>
                             </div>}
                     </div>
                     <div className="header-right">

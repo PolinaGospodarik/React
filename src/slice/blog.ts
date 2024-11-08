@@ -38,7 +38,7 @@ export const SearchPost  =createAsyncThunk(
     "blog/SearchPost",
     async function({ search, offset }:{search: string | undefined; offset: number }, {rejectWithValue}){
         try{
-            const response = await fetch (`https://studapi.teachmeskills.by/blog/posts/?search=${search}&offset=${offset}`);
+            const response = await fetch (`https://studapi.teachmeskills.by/blog/posts/?limit=10&offset=${offset}&search=${search}`);
             if(!response.ok){
                 throw new Error("Пост не найден");
             }
@@ -61,6 +61,7 @@ const blogSlice = createSlice({
         status: null,
         error: null,
         search: [],
+        searchValue: "",
         offset: 0
     },
     reducers:{
@@ -84,8 +85,13 @@ const blogSlice = createSlice({
             state.offset+=10;
         },
         decrementOffset: (state) => {
-            state.offset-=10;
-        }
+            if (state.offset > 0) {
+                state.offset -= 10;
+            }
+        },
+        setSearchValue: (state, action) => {
+            state.searchValue = action.payload;
+        },
     },
     extraReducers: (builder) =>{
         builder
@@ -144,5 +150,5 @@ const blogSlice = createSlice({
 
 const {actions, reducer} = blogSlice;
 
-export const { addToFavorites, removeFromFavorites, changeActiveTab, clearSearch, incrementOffset, decrementOffset } = actions;
+export const { addToFavorites, removeFromFavorites, changeActiveTab, clearSearch, incrementOffset, decrementOffset, setSearchValue } = actions;
 export default reducer;

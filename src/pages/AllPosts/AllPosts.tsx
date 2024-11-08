@@ -39,8 +39,8 @@ const AllPosts = () => {
                         {checkActiveTab()}
                     </div>
                     <div className="all-posts__pagination">
-                        <div className="pagination__previous" onClick={() => dispatch(decrementOffset())}> ← Prev</div>
-                        <div className="pagination__next" onClick={() => dispatch(incrementOffset())}>Next → </div>
+                        <div className="all-posts__pagination-previous" onClick={() => dispatch(decrementOffset())}> ← Prev</div>
+                        <div className="all-posts__pagination-next" onClick={() => dispatch(incrementOffset())}>Next → </div>
                     </div>
                 </div>
                 <Footer></Footer>
